@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <!--Textual description-->
+    <string name="tyear">%02dש&#160;</string>
+    <string name="tmonth">%02dח&#160;</string>
+    <string name="tweek">%02dשב&#160;</string>
+    <string name="tday">%02dימ&#160;</string>
+    <string name="thour">שע%02d&#160;</string>
+    <string name="tminute">דק%02d&#160;</string>
+    <string name="tsecond">שנ%02d&#160;</string>
+</resources>

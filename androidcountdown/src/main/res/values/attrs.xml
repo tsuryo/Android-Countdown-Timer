@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <declare-styleable name="Counter">
+        <attr name="text_color" format="color" />
+        <attr name="text_size" format="dimension" />
+        <attr name="textual_description" format="boolean" />
+        <attr name="max_time_unit" format="enum">
+            <enum name="YEAR" value="0" />
+            <enum name="MONTH" value="1" />
+            <enum name="WEEK" value="2" />
+            <enum name="DAY" value="3" />
+            <enum name="HOUR" value="4" />
+            <enum name="MINUTE" value="5" />
+            <enum name="SECOND" value="6" />
+        </attr>
+    </declare-styleable>
+</resources>

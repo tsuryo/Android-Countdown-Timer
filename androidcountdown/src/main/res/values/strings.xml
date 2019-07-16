@@ -1,0 +1,18 @@
+<resources>
+    <string name="year" translatable="false">%02d :&#160;</string>
+    <string name="month" translatable="false">%02d :&#160;</string>
+    <string name="week" translatable="false">%02d :&#160;</string>
+    <string name="day" translatable="false">%02d :&#160;</string>
+    <string name="hour" translatable="false">%02d :&#160;</string>
+    <string name="minute" translatable="false">%02d :&#160;</string>
+    <string name="second" translatable="false">%02d</string>
+
+    <!--Textual description-->
+    <string name="tyear">%02dy&#160;</string>
+    <string name="tmonth">%02dm&#160;</string>
+    <string name="tweek">%02dw&#160;</string>
+    <string name="tday">%02dd&#160;</string>
+    <string name="thour">%02dh&#160;</string>
+    <string name="tminute">%02dm&#160;</string>
+    <string name="tsecond">%02ds</string>
+</resources>
