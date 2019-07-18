@@ -10,6 +10,8 @@ Android 5.0+ API 21+
 
 * Customizable fonts (color, size, fonts resources).
 * Choose maximum time unit to show.
+* Built in fonts to choose,
+  app:counter_font="DIGITAL|DIGITAL_BOLD|DIGITAL_ITALIC|DIGITAL_ITALIC_BOLD|REGULAR"
 
 # Usage
 // Java
