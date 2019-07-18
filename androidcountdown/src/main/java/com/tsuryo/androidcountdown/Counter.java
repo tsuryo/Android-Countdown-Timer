@@ -206,15 +206,18 @@ public class Counter extends ConstraintLayout {
         }
         new CountDownTimer(date.getTime() - now.getTime(), 1000) {
             public void onTick(long millisUntilFinished) {
+                long mMinutes = MILLISECONDS.toMinutes(millisUntilFinished);
+                long mHours = MILLISECONDS.toHours(millisUntilFinished);
+
                 long days = MILLISECONDS.toDays(millisUntilFinished);
                 long hours = days >= 1 && mMaxTimeUnit < TimeUnits.HOUR.getValue() ?
                         MILLISECONDS.toHours(millisUntilFinished) - TimeUnit.DAYS.toHours(days) :
                         MILLISECONDS.toHours(millisUntilFinished);
-                long minutes = hours >= 1 && mMaxTimeUnit < TimeUnits.MINUTE.getValue() ?
+                long minutes = mHours >= 1 && mMaxTimeUnit < TimeUnits.MINUTE.getValue() ?
                         MILLISECONDS.toMinutes(millisUntilFinished) - TimeUnit.HOURS
                                 .toMinutes(MILLISECONDS.toHours(millisUntilFinished)) :
                         MILLISECONDS.toMinutes(millisUntilFinished);
-                long seconds = minutes >= 1 && mMaxTimeUnit < TimeUnits.SECOND.getValue() ?
+                long seconds = mMinutes >= 1 && mMaxTimeUnit < TimeUnits.SECOND.getValue() ?
                         MILLISECONDS.toSeconds(millisUntilFinished) - TimeUnit.MINUTES.toSeconds(
                                 MILLISECONDS.toMinutes(millisUntilFinished)) :
                         MILLISECONDS.toSeconds(millisUntilFinished);
@@ -228,10 +231,12 @@ public class Counter extends ConstraintLayout {
     }
 
     private void setText(long days, long hours, long minutes, long seconds) {
-        if (days == 0) {
+        if (days == 0 && mMaxTimeUnit >
+                TimeUnits.DAY.getValue()) {
             mTvDay.setVisibility(GONE);
         }
-        if (hours == 0) {
+        if (hours == 0 && mMaxTimeUnit >
+                TimeUnits.HOUR.getValue()) {
             mTvHour.setVisibility(GONE);
         }
         if (mIsShowingTextDesc) {
