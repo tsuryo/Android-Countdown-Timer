@@ -1,4 +1,4 @@
-[![Release](https://jitpack.io/v/tsuryo/NumberPicker.svg)](https://jitpack.io/#tsuryo/Android-Countdown-Timer)
+[![Release](https://jitpack.io/v/tsuryo/Android-Countdown-Timer.svg)](https://jitpack.io/#tsuryo/Android-Countdown-Timer)
 # Android-Countdown-Timer
 Android library provide a simple to use Countdown Timer View.
 
