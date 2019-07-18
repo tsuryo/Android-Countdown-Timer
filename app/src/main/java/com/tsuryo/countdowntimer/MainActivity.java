@@ -33,8 +33,8 @@ public class MainActivity extends AppCompatActivity {
     @Override
     protected void onStart() {
         super.onStart();
-        mCounter.setDate("2019-07-16T16:33:00");
-        mCounter1.setDate("2019-07-16T16:33:00");
+        mCounter.setDate("2019-07-19T16:33:00");
+        mCounter1.setDate("2019-07-19T16:33:00");
 
 
 //        mCounter.setIsShowingTextDesc(true);
