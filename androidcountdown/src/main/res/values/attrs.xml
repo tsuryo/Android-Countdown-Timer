@@ -3,6 +3,13 @@
     <declare-styleable name="Counter">
         <attr name="text_color" format="color" />
         <attr name="text_size" format="dimension" />
+        <attr name="custom_font" format="reference" />
+        <attr name="counter_font" format="enum">
+            <enum name="DIGITAL" value="0" />
+            <enum name="DIGITAL_BOLD" value="1" />
+            <enum name="DIGITAL_ITALIC" value="2" />
+            <enum name="DIGITAL_ITALIC_BOLD" value="3" />
+        </attr>
         <attr name="textual_description" format="boolean" />
         <attr name="max_time_unit" format="enum">
             <enum name="YEAR" value="0" />

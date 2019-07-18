@@ -1,6 +1,7 @@
 package com.tsuryo.countdowntimer;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.core.content.res.ResourcesCompat;
 
 import android.os.Bundle;
 import android.os.CountDownTimer;
@@ -35,10 +36,12 @@ public class MainActivity extends AppCompatActivity {
         mCounter.setDate("2019-07-16T16:33:00");
         mCounter1.setDate("2019-07-16T16:33:00");
 
+
 //        mCounter.setIsShowingTextDesc(true);
 //        mCounter.setTextColor(R.color.colorPrimary);
 //        mCounter.setMaxTimeUnit(TimeUnits.DAY);
 //        mCounter.setTextSize(30);
+//        mCounter1.setTypeFace(ResourcesCompat.getFont(this, R.font.batmfa__));
     }
 
     @Override

@@ -3,6 +3,7 @@ package com.tsuryo.androidcountdown;
 import android.content.Context;
 import android.content.res.TypedArray;
 import android.graphics.Canvas;
+import android.graphics.Typeface;
 import android.os.CountDownTimer;
 import android.util.AttributeSet;
 import android.util.TypedValue;
@@ -10,6 +11,7 @@ import android.view.LayoutInflater;
 import android.widget.TextView;
 
 import androidx.constraintlayout.widget.ConstraintLayout;
+import androidx.core.content.res.ResourcesCompat;
 
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
@@ -19,6 +21,7 @@ import java.util.concurrent.TimeUnit;
 
 import static com.tsuryo.androidcountdown.Constants.MAX_UNIT_DEF;
 import static com.tsuryo.androidcountdown.Constants.TEXT_SIZE_DEF;
+import static java.util.concurrent.TimeUnit.MILLISECONDS;
 
 
 public class Counter extends ConstraintLayout {
@@ -29,13 +32,14 @@ public class Counter extends ConstraintLayout {
     private Integer mMaxTimeUnit;
     private String mDate;
     private boolean mIsShowingTextDesc;
+    private Typeface mTypeFace;
 
     public Counter(Context context, AttributeSet attrs) {
         super(context, attrs);
         LayoutInflater inflater = LayoutInflater.from(context);
         inflater.inflate(R.layout.timer, this, true);
-        getAttributes(context, attrs);
         initViews();
+        getAttributes(context, attrs);
         setWillNotDraw(false);
     }
 
@@ -68,6 +72,8 @@ public class Counter extends ConstraintLayout {
         }
         if (mDate != null)
             startCounting(mDate);
+        if (mTypeFace != null)
+            setFont();
     }
 
 
@@ -92,6 +98,11 @@ public class Counter extends ConstraintLayout {
                 MAX_UNIT_DEF.getValue());
         mIsShowingTextDesc = typedArray
                 .getBoolean(R.styleable.Counter_textual_description, false);
+        mTypeFace = getTypeFace(typedArray.getInt(R.styleable.Counter_counter_font,
+                CounterFont.REGULAR.getValue()));
+        if (android.os.Build.VERSION.SDK_INT >= android.os.Build.VERSION_CODES.O)
+            if (typedArray.getFont(R.styleable.Counter_custom_font) != null)
+                mTypeFace = typedArray.getFont(R.styleable.Counter_custom_font);
     }
 
     /**
@@ -122,6 +133,11 @@ public class Counter extends ConstraintLayout {
         refresh();
     }
 
+    public void setTypeFace(Typeface typeFace) {
+        mTypeFace = typeFace;
+        refresh();
+    }
+
     public Integer getTextColor() {
         return mTextColor;
     }
@@ -138,12 +154,49 @@ public class Counter extends ConstraintLayout {
         return mDate;
     }
 
+    public Typeface getTypeFace() {
+        return mTypeFace;
+    }
+
     public boolean isShowingTextDesc() {
         return mIsShowingTextDesc;
     }
 
+    private Typeface getTypeFace(int fontType) {
+        Typeface tf = null;
+        CounterFont counterFont = CounterFont.values()[fontType];
+        switch (counterFont) {
+            case REGULAR:
+                break;
+            case DIGITAL:
+                tf = ResourcesCompat.getFont(getContext(), R.font.digi);
+                break;
+            case DIGITAL_BOLD:
+                tf = ResourcesCompat.getFont(getContext(), R.font.digib);
+                break;
+            case DIGITAL_ITALIC:
+                tf = ResourcesCompat.getFont(getContext(), R.font.digii);
+                break;
+            case DIGITAL_ITALIC_BOLD:
+                tf = ResourcesCompat.getFont(getContext(), R.font.digit);
+                break;
+        }
+        return tf;
+    }
+
+    private void setFont() {
+        if (mTypeFace != null) {
+            mTvDay.setTypeface(mTypeFace);
+            mTvHour.setTypeface(mTypeFace);
+            mTvMinute.setTypeface(mTypeFace);
+            mTvMinute.setTypeface(mTypeFace);
+            mTvSecond.setTypeface(mTypeFace);
+        }
+    }
+
     private void startCounting(String dateString) {
-        SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd'T'HH:mm:ss", Locale.getDefault());
+        SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd'T'HH:mm:ss",
+                Locale.getDefault());
         Date date = null;
         Date now = new Date();
         try {
@@ -153,12 +206,18 @@ public class Counter extends ConstraintLayout {
         }
         new CountDownTimer(date.getTime() - now.getTime(), 1000) {
             public void onTick(long millisUntilFinished) {
-                long days = TimeUnit.MILLISECONDS.toDays(millisUntilFinished);
-                long hours = TimeUnit.MILLISECONDS.toHours(millisUntilFinished);
-                long minutes = TimeUnit.MILLISECONDS.toMinutes(millisUntilFinished) -
-                        TimeUnit.HOURS.toMinutes(TimeUnit.MILLISECONDS.toHours(millisUntilFinished));
-                long seconds = TimeUnit.MILLISECONDS.toSeconds(millisUntilFinished) -
-                        TimeUnit.MINUTES.toSeconds(TimeUnit.MILLISECONDS.toMinutes(millisUntilFinished));
+                long days = MILLISECONDS.toDays(millisUntilFinished);
+                long hours = days >= 1 && mMaxTimeUnit < TimeUnits.HOUR.getValue() ?
+                        MILLISECONDS.toHours(millisUntilFinished) - TimeUnit.DAYS.toHours(days) :
+                        MILLISECONDS.toHours(millisUntilFinished);
+                long minutes = hours >= 1 && mMaxTimeUnit < TimeUnits.MINUTE.getValue() ?
+                        MILLISECONDS.toMinutes(millisUntilFinished) - TimeUnit.HOURS
+                                .toMinutes(MILLISECONDS.toHours(millisUntilFinished)) :
+                        MILLISECONDS.toMinutes(millisUntilFinished);
+                long seconds = minutes >= 1 && mMaxTimeUnit < TimeUnits.SECOND.getValue() ?
+                        MILLISECONDS.toSeconds(millisUntilFinished) - TimeUnit.MINUTES.toSeconds(
+                                MILLISECONDS.toMinutes(millisUntilFinished)) :
+                        MILLISECONDS.toSeconds(millisUntilFinished);
                 setText(days, hours, minutes, seconds);
             }
 
