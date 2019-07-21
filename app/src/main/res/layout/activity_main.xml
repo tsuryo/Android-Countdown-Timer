@@ -10,32 +10,35 @@
         android:id="@+id/counter"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_marginStart="8dp"
+        android:layout_marginTop="8dp"
         android:layout_marginBottom="8dp"
-        app:layout_constraintBottom_toTopOf="@+id/gdH50"
-        app:layout_constraintLeft_toLeftOf="parent"
-        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintBottom_toTopOf="@+id/guideline"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         app:max_time_unit="HOUR"
+        app:custom_font="@font/batmfa__"
         app:text_color="@color/colorPrimary"
-        app:text_size="36dp"
-        app:custom_font="@font/batmfa__" />
+        app:text_size="36dp" />
 
     <com.tsuryo.androidcountdown.Counter
         android:id="@+id/counte1"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_marginTop="8dp"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintLeft_toLeftOf="parent"
-        app:layout_constraintRight_toRightOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/gdH50"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="@+id/guideline"
         app:max_time_unit="DAY"
-        app:text_color="#2196F3"
+        app:counter_font="DIGITAL_BOLD"
+        app:text_color="@color/colorAccent"
         app:text_size="36dp"
-        app:textual_description="true"
-        app:counter_font="DIGITAL_BOLD" />
+        app:textual_description="true" />
 
     <androidx.constraintlayout.widget.Guideline
-        android:id="@+id/gdH50"
+        android:id="@+id/guideline"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:orientation="horizontal"
