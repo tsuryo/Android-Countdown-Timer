@@ -113,6 +113,16 @@ public class Counter extends ConstraintLayout {
         refresh();
     }
 
+    /**
+     * @param date {@link Date}
+     */
+    public void setDate(Date date) {
+        SimpleDateFormat dateFormat = new SimpleDateFormat(
+                "yyyy-MM-dd'T'HH:mm:ss", Locale.getDefault());
+        mDate = dateFormat.format(date);
+        refresh();
+    }
+
     public void setTextColor(Integer textColor) {
         mTextColor = textColor;
         refresh();

@@ -33,8 +33,15 @@ public class MainActivity extends AppCompatActivity {
     @Override
     protected void onStart() {
         super.onStart();
-        mCounter.setDate("2019-07-19T18:33:00");
-        mCounter1.setDate("2019-07-19T18:33:00");
+        SimpleDateFormat format = new SimpleDateFormat(
+                "yyyy-MM-dd'T'HH:mm:ss", Locale.getDefault());
+        try {
+            Date date = format.parse("2019-07-22T18:33:00");
+            mCounter.setDate(date);
+        } catch (ParseException e) {
+            e.printStackTrace();
+        }
+        mCounter1.setDate("2019-07-22T18:33:00");
 
 
 //        mCounter.setIsShowingTextDesc(true);
