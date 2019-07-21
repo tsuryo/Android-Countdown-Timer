@@ -14,8 +14,8 @@ Android 5.0+ API 21+
   app:counter_font="DIGITAL|DIGITAL_BOLD|DIGITAL_ITALIC|DIGITAL_ITALIC_BOLD|REGULAR"
 
 # Usage
-// Java
-```
+### Java
+```Java
         mCounter = findViewById(R.id.counter);
 	Date date = format.parse("2019-07-22T18:33:00");
         mCounter.setDate(date);//countdown starts
@@ -31,8 +31,8 @@ Android 5.0+ API 21+
         mCounter.setTextSize(30);
 	mCounter.setTypeFace(ResourcesCompat.getFont(this, R.font.batmfa__));
 ```
-//XML
-```
+### XML
+```XML
     <com.tsuryo.androidcountdown.Counter
         android:id="@+id/counter"
         android:layout_width="wrap_content"
