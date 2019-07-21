@@ -17,7 +17,11 @@ Android 5.0+ API 21+
 // Java
 ```
         mCounter = findViewById(R.id.counter);
+	Date date = format.parse("2019-07-22T18:33:00");
+        mCounter.setDate(date);//countdown starts
+	//or use: 
 	mCounter.setDate("2019-07-19T18:33:00"); //countdown starts
+	
 	/*
          * Additional attributes:
          * */
@@ -33,6 +37,7 @@ Android 5.0+ API 21+
         android:id="@+id/counter"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+	
 	<!--Additional attributes-->
         app:max_time_unit="HOUR"
         app:text_color="@color/colorPrimary"
@@ -43,6 +48,7 @@ Android 5.0+ API 21+
         android:id="@+id/counte1"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+	
 	<!--Additional attributes-->
         app:max_time_unit="DAY"
         app:text_color="#2196F3"
