@@ -73,6 +73,6 @@ allprojects {
 Add the dependency
 ```
 dependencies {
-	implementation 'com.github.tsuryo:Android-Countdown-Timer:1.1'
+	implementation 'com.github.tsuryo:Android-Countdown-Timer:1.1.0'
 }
 ```
