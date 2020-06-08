@@ -30,6 +30,21 @@ Android 5.0+ API 21+
         mCounter.setMaxTimeUnit(TimeUnits.DAY);
         mCounter.setTextSize(30);
 	mCounter.setTypeFace(ResourcesCompat.getFont(this, R.font.batmfa__));
+	
+	mCounter.setListener(new Counter.Listener() {
+            @Override
+            public void onTick(long millisUntilFinished) {
+                Log.d(TAG, "onTick: Counter - " + millisUntilFinished);
+            }
+
+            @Override
+            public void onTick(long days, long hours, long minutes, long seconds) {
+                Log.d(TAG, "onTick: Counter - " + days + "d " +
+                        hours + "h " +
+                        minutes + "m " +
+                        seconds + "s " );
+            }
+        });
 ```
 ### XML
 ```XML
