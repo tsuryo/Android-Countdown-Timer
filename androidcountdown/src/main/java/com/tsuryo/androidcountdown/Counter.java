@@ -33,6 +33,7 @@ public class Counter extends ConstraintLayout {
     private String mDate;
     private boolean mIsShowingTextDesc;
     private Typeface mTypeFace;
+    private Listener mListener;
 
     public Counter(Context context, AttributeSet attrs) {
         super(context, attrs);
@@ -148,6 +149,10 @@ public class Counter extends ConstraintLayout {
         refresh();
     }
 
+    public void setListener(Listener listener) {
+        mListener = listener;
+    }
+
     public Integer getTextColor() {
         return mTextColor;
     }
@@ -232,6 +237,7 @@ public class Counter extends ConstraintLayout {
                                 MILLISECONDS.toMinutes(millisUntilFinished)) :
                         MILLISECONDS.toSeconds(millisUntilFinished);
                 setText(days, hours, minutes, seconds);
+                notifyListener(millisUntilFinished, days, hours, minutes, seconds);
             }
 
             public void onFinish() {
@@ -262,8 +268,22 @@ public class Counter extends ConstraintLayout {
         }
     }
 
+    private void notifyListener(long millisUntilFinished, long days,
+                                long hours, long minutes, long seconds) {
+        if (mListener != null) {
+            mListener.onTick(millisUntilFinished);
+            mListener.onTick(days, hours, minutes, seconds);
+        }
+    }
+
     private void refresh() {
         invalidate();
         requestLayout();
+    }
+
+    public interface Listener {
+        void onTick(long millisUntilFinished);
+
+        void onTick(long days, long hours, long minutes, long seconds);
     }
 }

@@ -36,13 +36,27 @@ public class MainActivity extends AppCompatActivity {
         SimpleDateFormat format = new SimpleDateFormat(
                 "yyyy-MM-dd'T'HH:mm:ss", Locale.getDefault());
         try {
-            Date date = format.parse("2019-07-22T18:33:00");
+            Date date = format.parse("2020-06-10T18:33:00");
             mCounter.setDate(date);
         } catch (ParseException e) {
             e.printStackTrace();
         }
-        mCounter1.setDate("2019-07-22T18:33:00");
+        mCounter1.setDate("2020-06-10T18:33:00");
 
+        mCounter.setListener(new Counter.Listener() {
+            @Override
+            public void onTick(long millisUntilFinished) {
+                Log.d(TAG, "onTick: Counter - " + millisUntilFinished);
+            }
+
+            @Override
+            public void onTick(long days, long hours, long minutes, long seconds) {
+                Log.d(TAG, "onTick: Counter - " + days + "d " +
+                        hours + "h " +
+                        minutes + "m " +
+                        seconds + "s " );
+            }
+        });
 
 //        mCounter.setIsShowingTextDesc(true);
 //        mCounter.setTextColor(R.color.colorPrimary);
