@@ -1,4 +1,4 @@
-[![Release](https://jitpack.io/v/tsuryo/Android-Countdown-Timer.svg)](https://jitpack.io/#tsuryo/Android-Countdown-Timer)
+[![](https://jitpack.io/v/tsuryo/Android-Countdown-Timer.svg)](https://jitpack.io/#tsuryo/Android-Countdown-Timer)
 # Android-Countdown-Timer
 Android library provide a simple to use Countdown Timer View.
 
@@ -88,6 +88,6 @@ allprojects {
 Add the dependency
 ```
 dependencies {
-	implementation 'com.github.tsuryo:Android-Countdown-Timer:1.1.1'
+	implementation 'com.github.tsuryo:Android-Countdown-Timer:1.2'
 }
 ```
