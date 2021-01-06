@@ -1,5 +1,6 @@
 [![](https://jitpack.io/v/tsuryo/Android-Countdown-Timer.svg)](https://jitpack.io/#tsuryo/Android-Countdown-Timer)
 ![Downloads](https://jitpack.io/v/tsuryo/Android-Countdown-Timer/month.svg)
+![Downloads](https://jitpack.io/v/tsuryo/Android-Countdown-Timer/week.svg)
 
 # Android-Countdown-Timer
 Android library provide a simple to use Countdown Timer View.
